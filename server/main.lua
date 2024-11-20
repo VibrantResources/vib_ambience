@@ -25,7 +25,18 @@ local swapHook = exports.ox_inventory:registerHook('swapItems', function(payload
 end)
 
 CreateThread(function()
-    for k, v in pairs(Config.StaticShops) do
+    for k, v in pairs(Shops.StaticShops) do
+        if v.StoreType == "Buying" then
+            exports.ox_inventory:RegisterShop(k, {
+                name = k,
+                inventory = v.AvailableStock,
+            })
+        elseif v.StoreType == "Selling" then
+            exports.ox_inventory:RegisterStash(k, "Sell "..k, 10, 50000)
+        end
+    end
+
+    for k, v in pairs(Mobile.MobileShops) do
         if v.StoreType == "Buying" then
             exports.ox_inventory:RegisterShop(k, {
                 name = k,
@@ -38,7 +49,7 @@ CreateThread(function()
 end)
 
 function getItemPrice(itemName, payload)
-    local foundItemPrice = Config.StaticShops[payload.toInventory].SellableItems[itemName]
+    local foundItemPrice = Shops.StaticShops[payload.toInventory].SellableItems[itemName]
 
     if foundItemPrice == nil then
         lib.notify(payload.source,{
@@ -48,13 +59,20 @@ function getItemPrice(itemName, payload)
         }) 
 
         return
-    else
-        return foundItemPrice
     end
+
+    return foundItemPrice
 end
 
 function GetStoreName(storeName)
-    for k, v in pairs(Config.StaticShops) do
+    for k, v in pairs(Shops.StaticShops) do
+        if k == storeName then
+            
+            return storeName
+        end
+    end
+
+    for k, v in pairs(Mobile.MobileShops) do
         if k == storeName then
             
             return storeName

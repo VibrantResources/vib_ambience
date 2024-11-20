@@ -1,5 +1,5 @@
 CreateThread(function()
-    for k, pedInfo in pairs(Config.StaticShops) do
+    for k, pedInfo in pairs(Shops.StaticShops) do
         local pedModel = lib.requestModel(pedInfo.Model, 60000)
 
         local shopPed = CreatePed(1, pedModel, pedInfo.Location.xyz, pedInfo.Location.w, false, false)
