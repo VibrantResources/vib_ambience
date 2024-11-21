@@ -1,9 +1,9 @@
 CreateThread(function()
-    Wait(3000)
+    Wait(10000)
     local mobileShopInfo = lib.callback.await('ambience:server:GatherMobileShops', false)
 
     for k, v in pairs(mobileShopInfo) do
-        Wait(250)
+        Wait(500)
         local clientTarget = NetworkGetEntityFromNetworkId(v.clientEntity)
 
         SetEntityInvincible(clientTarget, true)
@@ -19,8 +19,11 @@ CreateThread(function()
                     name = k,
                     onSelect = function()
                         Wait(100)
+
                         PlayPedAmbientSpeechNative(clientTarget, 'GENERIC_HI', 'Speech_Params_Force')
-                        exports.ox_inventory:openInventory('shop', { type = k})
+                        exports.ox_inventory:openInventory('shop', { 
+                            type = k,
+                        })
                     end,
                 }
             })
@@ -31,6 +34,7 @@ CreateThread(function()
                     icon = 'fa-solid fa-sack-dollar',
                     onSelect = function()
                         Wait(100)
+
                         PlayPedAmbientSpeechNative(clientTarget, 'GENERIC_HI', 'Speech_Params_Force')
                         exports.ox_inventory:openInventory('stash', k)
                     end,

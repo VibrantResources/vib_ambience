@@ -3,10 +3,13 @@ spawnedMobilePeds = {}
 CreateThread(function()
     for k, pedInfo in pairs(Mobile.MobileShops) do
         local mobileShopPed = CreatePed(1, pedInfo.Model, pedInfo.Location.xyz, pedInfo.Location.w, true, true)
+        local cEntity = nil
 
-        Wait(250)
-        local cEntity = NetworkGetNetworkIdFromEntity(mobileShopPed)
+        repeat 
+            cEntity = NetworkGetNetworkIdFromEntity(mobileShopPed)
+        until cEntity ~= nil
 
+        print("This is the set cEntity: "..cEntity.." for shop: "..k)
         spawnedMobilePeds[k] = {
             clientEntity = cEntity,
             shopData = pedInfo,
