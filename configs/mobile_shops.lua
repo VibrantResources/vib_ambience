@@ -13,7 +13,7 @@ Mobile.MobileShops = {
             Colour = 10,
         },
         -- These are the points the guard will walk to during the patrol route. Start at [1], going to the last one then heading back to [1] before starting again
-        -- I advise that each point isn't too far from another as pathing can be wierd
+        -- I advise that each point isn't too far from another as pathing can be weird
         Route = {
             [1] = vector3(-1326.17, -1408.7, 4.31), 
             [2] = vector3(-1341.45, -1412.19, 4.31),
