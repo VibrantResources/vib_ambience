@@ -1,5 +1,7 @@
 Mobile = Mobile or {}
 
+Mobile.UseMobileShops = false
+
 Mobile.MobileShops = {
     ["Illegal guns"] = {
         StoreType = "Buying", -- Buying = You buy items / Selling = You sell items
