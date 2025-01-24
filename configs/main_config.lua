@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.GenericStuff = {
+Config.CoreInfo = {
     Debug = false,
     MoneyItem = "money",
 }

@@ -18,7 +18,7 @@ local swapHook = exports.ox_inventory:registerHook('swapItems', function(payload
         CreateThread(function()
             Wait(250)
             if exports.ox_inventory:RemoveItem(payload.toInventory, itemName, payload.count) then  
-                exports.ox_inventory:AddItem(payload.source, 'money', (itemPrice * payload.count))
+                exports.ox_inventory:AddItem(payload.source, Config.CoreInfo.MoneyItem, (itemPrice * payload.count))
             end 
         end)
     end
