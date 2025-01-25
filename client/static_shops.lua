@@ -1,41 +1,41 @@
 CreateThread(function()
-    for k, pedInfo in pairs(Shops.StaticShops) do
-        local pedModel = lib.requestModel(pedInfo.Model, 60000)
+    for k, v in pairs(Shops.StaticShops) do
+        local pedModel = lib.requestModel(v.Model, 60000)
 
-        local shopPed = CreatePed(1, pedModel, pedInfo.Location.xyz, pedInfo.Location.w, false, false)
+        local shopPed = CreatePed(1, pedModel, v.Location.xyz, v.Location.w, false, false)
 
         FreezeEntityPosition(shopPed, true)
         SetEntityInvincible(shopPed, true)
         SetBlockingOfNonTemporaryEvents(shopPed, true)
 
-        if pedInfo.BlipInfo.Active then
-            local shopBlip = AddBlipForCoord(pedInfo.Location.x, pedInfo.Location.y, pedInfo.Location.z)
+        if v.BlipInfo.Active then
+            local shopBlip = AddBlipForCoord(v.Location.x, v.Location.y, v.Location.z)
 
-            SetBlipSprite(shopBlip, pedInfo.BlipInfo.Sprite)
+            SetBlipSprite(shopBlip, v.BlipInfo.Sprite)
             SetBlipDisplay(shopBlip, 4)
-            SetBlipScale(shopBlip, pedInfo.BlipInfo.Scale)
-            SetBlipColour(shopBlip, pedInfo.BlipInfo.Colour)
+            SetBlipScale(shopBlip, v.BlipInfo.Scale)
+            SetBlipColour(shopBlip, v.BlipInfo.Colour)
             SetBlipAsShortRange(shopBlip, true)
             BeginTextCommandSetBlipName('STRING')
-            AddTextComponentString(pedInfo.BlipInfo.BlipName)
+            AddTextComponentString(v.BlipInfo.BlipName)
             EndTextCommandSetBlipName(shopBlip)
         end
 
-        if pedInfo.AnimInfo.Active then
-            lib.requestAnimDict(pedInfo.AnimInfo.Dict)
-            TaskPlayAnim(shopPed, pedInfo.AnimInfo.Dict, pedInfo.AnimInfo.Clip, 4.0, 4.0, -1, 1, false, false, false, false)
-            RemoveAnimDict(pedInfo.AnimInfo.Dict)
+        if v.AnimInfo.Active then
+            lib.requestAnimDict(v.AnimInfo.Dict)
+            TaskPlayAnim(shopPed, v.AnimInfo.Dict, v.AnimInfo.Clip, 4.0, 4.0, -1, 1, false, false, false, false)
+            RemoveAnimDict(v.AnimInfo.Dict)
         end
 
-        if pedInfo.PropInfo.Active then
-            local placement = pedInfo.PropInfo.Placement
-            lib.RequestModel(pedInfo.PropInfo.PropModel)
-            local propModel = CreateObject(pedInfo.PropInfo.PropModel, pedInfo.Location.xyz, false, true, false)
-            AttachEntityToEntity(propModel, shopPed, GetPedBoneIndex(shopPed, pedInfo.PropInfo.Bone), placement.x, placement.y, placement.z, placement.xRot, placement.yRot, placement.zRot, true, true, false, true, 1, true)
-            SetModelAsNoLongerNeeded(pedInfo.PropInfo.PropModel)
+        if v.PropInfo.Active then
+            local placement = v.PropInfo.Placement
+            lib.RequestModel(v.PropInfo.PropModel)
+            local propModel = CreateObject(v.PropInfo.PropModel, v.Location.xyz, false, true, false)
+            AttachEntityToEntity(propModel, shopPed, GetPedBoneIndex(shopPed, v.PropInfo.Bone), placement.x, placement.y, placement.z, placement.xRot, placement.yRot, placement.zRot, true, true, false, true, 1, true)
+            SetModelAsNoLongerNeeded(v.PropInfo.PropModel)
         end
 
-        if pedInfo.StoreType == "Buying" then
+        if v.StoreType == "Buying" then
             exports.ox_target:addLocalEntity(shopPed,  {
                 {
                     label = "Buy "..k,
@@ -48,7 +48,7 @@ CreateThread(function()
                     end,
                 }
             })
-        elseif pedInfo.StoreType == "Selling" then
+        elseif v.StoreType == "Selling" then
             exports.ox_target:addLocalEntity(shopPed,  {
                 {
                     label = "Sell "..k,
