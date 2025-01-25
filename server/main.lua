@@ -47,11 +47,4 @@ function GetStoreName(storeName)
             return storeName
         end
     end
-
-    for k, v in pairs(Mobile.MobileShops) do
-        if k == storeName then
-            
-            return storeName
-        end
-    end
 end
