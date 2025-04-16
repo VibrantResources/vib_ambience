@@ -52,7 +52,6 @@ Shops.StaticShops = {
             { name = 'gem_bag', price = math.random(500, 1000), currency = 'money'},
             { name = 'mining_bag', price = math.random(500, 1000), currency = 'money'},
             { name = 'wallet', price = math.random(100, 250), currency = 'money'},
-            { name = 'outfit_bag', price = math.random(1500, 2500), currency = 'money'},
         },
         AnimInfo = {
             Active = true,
