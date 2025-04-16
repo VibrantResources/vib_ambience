@@ -1,21 +1,22 @@
 fx_version 'cerulean'
 game 'gta5'
+lua54 'yes'
 
-description 'Ambient Surroundings'
+name 'vib_ambience'
 author 'Vibrant Resources'
-version '1.0'
+version '1.0.0'
+repository 'https://github.com/VibrantResources/vib_ambience'
+description 'A shop creation resource with configurable animations, scenarios, props and more!'
 
-shared_scripts {
-    '@ox_lib/init.lua',
-	'configs/*.lua',
+client_scripts {
+	'client/*.lua',
 }
 
 server_scripts  {
 	'server/*.lua'
 }
 
-client_scripts {
-	'client/*.lua',
+shared_scripts {
+    '@ox_lib/init.lua',
+	'configs/*.lua',
 }
-
-lua54 'yes'
