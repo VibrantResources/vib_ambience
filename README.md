@@ -7,3 +7,7 @@ Because we wanted something that was configurable in whatever capacity we wanted
 # Doesn't ox_inventory already have these features?
 
 Yes but as we develop this resource we'll have many more features
+
+# Are the Mobile shops ready yet?
+
+No. But hopefully we'll have this feature finished soon!
